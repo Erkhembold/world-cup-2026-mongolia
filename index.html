@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 — Иж Бүрэн Төв</title>
+    <style>
+        /* CORE MODERN PREMIUM SPORTS DESIGN SYSTEM */
+        :root {
+            --bg-deep: #080c14;
+            --bg-card: #121824;
+            --bg-input: #1a2336;
+            --accent-gold: #f59e0b;
+            --accent-neon: #10b981;
+            --accent-crimson: #ef4444;
+            --text-pure: #ffffff;
+            --text-dim: #94a3b8;
+            --border-glow: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            line-height: 1.6;
+        }
+
+        /* PREMIUM HEADER NAVIGATION */
+        header {
+            background-color: #020617;
+            border-bottom: 2px solid var(--border-glow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-pure);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-pure);
+            background-color: var(--bg-card);
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        /* USER PROFILE AREA IN HEADER */
+        .auth-zone {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-badge {
+            display: none;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid #3b82f6;
+        }
+
+        .xp-display {
+            color: var(--accent-gold);
+            margin-left: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background-color: var(--accent-gold); color: #000; }
+        .btn-secondary { background-color: transparent; color: var(--text-pure); border: 1px solid var(--border-glow); }
+        .btn-danger { background-color: var(--accent-crimson); color: white; }
+
+        /* VIEW CONTAINER LOGIC */
+        .view-section {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .view-section.active-view { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* HERO TITLE BANNERS */
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* GRID SYSTEM */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        /* 1. SCOREBOARD STYLES */
+        .score-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+        }
+
+        .match-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .team-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 35%;
+        }
+
+        .team-flag {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background-color: var(--bg-input);
+        }
+
+        .team-name { font-size: 18px; font-weight: 700; text-align: center; }
+        .score-center { display: flex; align-items: center; gap: 20px; font-size: 32px; font-weight: 900; }
+        .score-dash { color: var(--text-dim); }
+        .match-status { font-size: 13px; font-weight: bold; text-align: center; color: var(--accent-neon); }
+
+        /* 2. NEWS STYLES */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .news-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-img { width: 100%; height: 180px; object-fit: cover; background-color: var(--bg-input); }
+        .news-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .news-card h3 { font-size: 16px; margin-bottom: 10px; font-weight: 700; line-height: 1.4; }
+        .news-card p { color: var(--text-dim); font-size: 13px; margin-bottom: 15px; }
+        .news-meta { font-size: 11px; color: var(--accent-gold); font-weight: bold; }
+
+        /* 3. PLAYER STATS STYLES */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-glow);
+        }
+
+        .stats-table th, .stats-table td { padding: 15px 20px; text-align: left; }
+        .stats-table th { background-color: #0b111e; font-size: 13px; text-transform: uppercase; color: var(--text-dim); }
+        .stats-table tr { border-bottom: 1px solid var(--border-glow); }
+        .stats-table tr:last-child { border-bottom: none; }
+        .rank-num { font-weight: 800; color: var(--accent-gold); }
+
+        /* 4. PREDICTIONS & PERSISTENT LEADERBOARD */
+        .prediction-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .predict-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .predict-input-container { display: flex; align-items: center; gap: 10px; }
+        .predict-input {
+            width: 50px;
+            height: 40px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .leaderboard-list {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 10px 0;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .leaderboard-item:last-child { border-bottom: none; }
+        .leaderboard-empty { color: var(--text-dim); text-align: center; padding: 30px; font-size: 14px; }
+
+        /* 5. OPERATIONAL QUIZ ENGINE */
+        .quiz-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .option-btn {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-glow);
+            color: var(--text-pure);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-btn:hover { background-color: #24304a; }
+        .quiz-score-banner { text-align: center; padding: 20px; background-color: #0b111e; border-radius: 8px; }
+
+        /* AUTH MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 35px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; font-weight: 600; }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none; border: none; color: var(--text-dim);
+            font-size: 20px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UNIVERSAL NAVIGATION HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">FIFA <span>WORLD CUP 2026</span></div>
+            <ul class="nav-menu">
+                <li><a class="nav-link active" onclick="switchView('scores-view')">Тоглолт</a></li>
+                <li><a class="nav-link" onclick="switchView('news-view')">Мэдээ мэдээлэл</a></li>
+                <li><a class="nav-link" onclick="switchView('stats-view')">Тоглогчийн Стат</a></li>
+                <li><a class="nav-link" onclick="switchView('predict-view')">Таамаглал</a></li>
+                <li><a class="nav-link" onclick="switchView('quiz-view')">Асуулт Хариулт</a></li>
+            </ul>
+            <div class="auth-zone">
+                <div class="user-badge" id="header-user-badge">
+                    <span id="header-username">Хэрэглэгч</span>
+                    <span class="xp-display" id="header-xp">0 XP</span>
+                </div>
+                <button class="btn btn-secondary" id="nav-login-btn" onclick="openModal('login-modal')">Нэвтрэх</button>
+                <button class="btn btn-primary" id="nav-register-btn" onclick="openModal('register-modal')">Бүртгүүлэх</button>
+                <button class="btn btn-danger" id="nav-logout-btn" style="display: none;" onclick="handleLogout()">Гарах</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: SCOREBOARD (UPDATED 2026 OPENING WEEK RESULTS) -->
+    <section id="scores-view" class="view-section active-view">
+        <div class="section-title">ДАШТ-2026 Нээлтийн Тоглолтуудын Үр Дүн</div>
+        <div class="dashboard-grid">
+            <div class="left-main">
+                
+                <!-- MATCH CARD 1: MEXICO VS SOUTH AFRICA -->
+                <div class="score-card">
+                    <div class="match-header">
+                        <span>A ХЭСЭГ • АСТЕКА СТАДИОН</span>
+                        <span>Түүхэн нээлтийн тоглолт</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/mx.png" alt="Mexico">
+                            <span class="team-name">Мексик</span>
+                        </div>
+                        <div class="score-center">
+                            <span>1</span>
+                            <span class="score-dash">-</span>
+                            <span>0</span>
+                        </div>
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/za.png" alt="South Africa">
+                            <span class="team-name">Өмнөд Африк</span>
+                        </div>
+                    </div>
+                    <div class="match-status" style="color: var(--accent-gold);">ТОГЛОЛТ ДУУССАН (FT)</div>
+                </div>
+
+                <!-- MATCH CARD 2: CANADA VS OMAN -->
+                <div class="score-card">
+                    <div class="match-header">
+                        <span>B ХЭСЭГ • БИ-СИ ПЛЭЙС СТАДИОН</span>
+                        <span>Канадын анхны тоглолт</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/ca.png" alt="Canada">
+                            <span class="team-name">Канад</span>
+                        </div>
+                        <div class="score-center">
+                            <span>1</span>
+                            <span class="score-dash">-</span>
+                            <span>1</span>
+                        </div>
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/om.png" alt="Oman">
+                            <span class="team-name">Оман</span>
+                        </div>
+                    </div>
+                    <div class="match-status" style="color: var(--accent-gold);">ТОГЛОЛТ ДУУССАН (FT)</div>
+                </div>
+
+                <!-- MATCH CARD 3: USA VS BOLIVIA -->
+                <div class="score-card">
+                    <div class="match-header">
+                        <span>D ХЭСЭГ • СОФИ СТАДИОН</span>
+                        <span>АНУ-ын шигшээ багийн гараа</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/us.png" alt="USA">
+                            <span class="team-name">АНУ</span>
+                        </div>
+                        <div class="score-center">
+                            <span>3</span>
+                            <span class="score-dash">-</span>
+                            <span>0</span>
+                        </div>
+                        <div class="team-box">
+                            <img class="team-flag" src="https://flagcdn.com/w160/bo.png" alt="Bolivia">
+                            <span class="team-name">Боливи</span>
+                        </div>
+                    </div>
+                    <div class="match-status" style="color: var(--accent-gold);">ТОГЛОЛТ ДУУССАН (FT)</div>
+                </div>
+
+            </div>
+            
+            <!-- STANDINGS SHEET -->
+            <div class="right-aside">
+                <h3 style="margin-bottom: 15px;">Тэмцээний Эхний Хэсгийн Барил</h3>
+                <table class="stats-table" style="font-size: 13px;">
+                    <thead>
+                        <tr><th>Баг (Хэсэг)</th><th>Т</th><th>Оноо</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>1. АНУ (D)</b></td><td>1</td><td>3</td></tr>
+                        <tr><td><b>2. Мексик (A)</b></td><td>1</td><td>3</td></tr>
+                        <tr><td><b>3. Канад (B)</b></td><td>1</td><td>1</td></tr>
+                        <tr><td><b>4. Оман (B)</b></td><td>1</td><td>1</td></tr>
+                        <tr><td><b>5. Өмнөд Африк (A)</b></td><td>1</td><td>0</td></tr>
+                        <tr><td><b>6. Боливи (D)</b></td><td>1</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: LATEST NEWS DECK (2026 EDITION ACTIVE REVIEWS) -->
+    <section id="news-view" class="view-section">
+        <div class="section-title">Дэлхийн Аваргын Шуурхай Мэдээ (2026)</div>
+        <div class="news-grid">
+            
+            <!-- ARTICLE 1 -->
+            <article class="news-card">
+                <img class="news-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500" alt="World Cup News">
+                <div class="news-content">
+                    <div>
+                        <div class="news-meta">ШУУРХАЙ МЭДЭЕ</div>
+                        <h3>Мехико хот түүхэн нээлтийг дэлхийд тунхаглав</h3>
+                        <p>Мексикийн шигшээ баг Астека цэнгэлдэх хүрээлэнд 100,000 хөгжөөн дэмжигчдийнхээ өмнө Өмнөд Африкийг 1-0 харьцаатайгаар буулган авч, 2026 оны дэлхийн аваргын анхны ялалтаа тэмдэглэлээ.</p>
+                    </div>
+                    <span style="font-size:11px; color:var(--text-dim); margin-top:10px;">Нийтэлсэн: Админ</span>
+                </div>
+            </article>
+
+            <!-- ARTICLE 2 -->
+            <article class="news-card">
+                <img class="news-img" src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500" alt="World Cup News">
+                <div class="news-content">
+                    <div>
+                        <div class="news-meta">АНУ ОНЦЛОХ ТЭМЦЭЭН</div>
+                        <h3>Кристиан Пулишич Лос-Анжелест дубль хийж гялалзлаа</h3>
+                        <p>АНУ-ын шигшээ баг СоФи цэнгэлдэх хүрээлэнд Боливийн багийг 3-0 харьцаатайгаар бут ниргэсэн бөгөөд ахлагч Кристиан Пулишич тоглолтын эхний хагаст 2 гоол оруулж багаа удирдав.</p>
+                    </div>
+                    <span style="font-size:11px; color:var(--text-dim); margin-top:10px;">Нийтэлсэн: Админ</span>
+                </div>
+            </article>
+
+            <!-- ARTICLE 3 -->
+            <article class="news-card">
+                <img class="news-img" src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=500" alt="World Cup News">
+                <div class="news-content">
+                    <div>
+                        <div class="news-meta">КАНАД СУРВАЛЖИЛГА</div>
+                        <h3>Ванкувер хот тэнцээгээр тэмцээнээ эхлүүлэв</h3>
+                        <p>Канадын шигшээ баг Би-Си Плэйс стадиондоо Оманы эсрэг хүнд тоглолт хийж, 1-1 харьцаатай тэнцсэнээр хэсэгтээ эхний 1 оноогоо авлаа.</p>
+                    </div>
+                    <span style="font-size:11px; color:var(--text-dim); margin-top:10px;">Нийтэлсэн: Админ</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: PLAYER STATS LEADERBOARD -->
+    <section id="stats-view" class="view-section">
+        <div class="section-title">Тэмцээний Статистик Удирдагчид (2026)</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px;">
+            <div>
+                <h3 style="margin-bottom:15px; color:var(--accent-gold);">Шилдэг Мэргэн Буучид (Goals)</h3>
+                <table class="stats-table">
+                    <thead><tr><th>Байр</th><th>Тоглогч</th><th>Улс</th><th>Гоол</th></tr></thead>
+                    <tbody>
+                        <tr><td class="rank-num">1</td><td>Christian Pulisic</td><td>АНУ</td><td><b>2</b></td></tr>
+                        <tr><td class="rank-num">2</td><td>Henry Martin</td><td>Мексик</td><td><b>1</b></td></tr>
+                        <tr><td class="rank-num">3</td><td>Jonathan David</td><td>Канад</td><td><b>1</b></td></tr>
+                        <tr><td class="rank-num">4</td><td>Folarin Balogun</td><td>АНУ</td><td><b>1</b></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3 style="margin-bottom:15px; color:var(--accent-gold);">Шилдэг Оновчтой Дамжуулалт (Assists)</h3>
+                <table class="stats-table">
+                    <thead><tr><th>Байр</th><th>Тоглогч</th><th>Улс</th><th>Дамжуулалт</th></tr></thead>
+                    <tbody>
+                        <tr><td class="rank-num">1</td><td>Weston McKennie</td><td>АНУ</td><td><b>1</b></td></tr>
+                        <tr><td class="rank-num">2</td><td>Alphonso Davies</td><td>Канад</td><td><b>1</b></td></tr>
+                        <tr><td class="rank-num">3</td><td>Chucky Lozano</td><td>Мексик</td><td><b>1</b></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PREDICTIONS PORTAL & PERSISTENT DATA LEADERBOARD -->
+    <section id="predict-view" class="view-section">
+        <div class="section-title">Маргаашийн Тоглолтын Таамаглал Дэвшүүлэх</div>
+        <div class="dashboard-grid">
+            
+            <!-- SUBMISSION DECK -->
+            <div>
+                <p id="predict-alert" style="color:var(--accent-crimson); margin-bottom:15px; font-weight:bold;">⚠️ Таамаглал дэвшүүлэхийн тулд эхлээд системд нэвтэрнэ үү.</p>
+                
+                <div class="prediction-box">
+                    <span style="font-size:12px; color:var(--text-dim);">ТААМАГЛАЛ #004 • МАРГААШ ОРОЙ</span>
+                    <div class="predict-row">
+                        <h3>Аргентин vs Марокко</h3>
+                        <div class="predict-input-container">
+                            <input type="number" class="predict-input" id="p-home-1" min="0" value="0">
+                            <span>:</span>
+                            <input type="number" class="predict-input" id="p-away-1" min="0" value="0">
+                            <button class="btn btn-primary" onclick="submitPrediction(1)">Илгээх</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-box">
+                    <span style="font-size:12px; color:var(--text-dim);">ТААМАГЛАЛ #005 • МАРГААШ ОРОЙ</span>
+                    <div class="predict-row">
+                        <h3>Бразил vs БНСУ</h3>
+                        <div class="predict-input-container">
+                            <input type="number" class="predict-input" id="p-home-2" min="0" value="0">
+                            <span>:</span>
+                            <input type="number" class="predict-input" id="p-away-2" min="0" value="0">
+                            <button class="btn btn-primary" onclick="submitPrediction(2)">Илгээх</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REAL PERSISTENT LEADERBOARD (NO HARDCODED MOCK NAMES) -->
+            <div>
+                <h3 style="margin-bottom:15px;">Хэрэглэгчдийн Тэргүүн ТҮҮЗ</h3>
+                <div class="leaderboard-list" id="leaderboard-target">
+                    <div class="leaderboard-empty">Бүртгэлтэй хэрээгч байхгүй байна. Бүртгүүлээд анхных нь болоорой!</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: OPERATIONAL QUIZ ENGINE (MAINSTREAM & CURRENT 2026 EDITION) -->
+    <section id="quiz-view" class="view-section">
+        <div class="section-title">Хөлбөмбөгийн Мэдлэг Сорих Төв</div>
+        <div class="quiz-card" id="quiz-card-box">
+            <div id="quiz-playground">
+                <div style="display:flex; justify-content:space-between; color:var(--accent-gold); font-size:13px; font-weight:bold; margin-bottom:10px;">
+                    <span id="quiz-progress-text">Асуулт 1 / 3</span>
+                    <span>+50 XP Олгоно</span>
+                </div>
+                <h2 id="quiz-question-text" style="font-size:18px; margin-bottom:20px;">Ачаалж байна...</h2>
+                <div class="quiz-options" id="quiz-options-box">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+            <div id="quiz-result-screen" style="display:none;" class="quiz-score-banner">
+                <h2 style="color:var(--accent-neon); margin-bottom:10px;">Асуулт хариулт дууслаа!</h2>
+                <p id="quiz-result-statement" style="font-size:15px; margin-bottom:15px;"></p>
+                <button class="btn btn-primary" onclick="restartQuizEngine()">Дахин эхлүүлэх</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="register-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('register-modal')">&times;</button>
+            <div class="modal-title">Шинэ хэрэглэгч бүртгүүлэх</div>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Нэвтрэх нэр</label>
+                    <input type="text" class="form-control" id="reg-username" required>
+                </div>
+                <div class="form-group">
+                    <label>Нууц үг</label>
+                    <input type="password" class="form-control" id="reg-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Бүртгэл Үүсгэх</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('login-modal')">&times;</button>
+            <div class="modal-title">Системд нэвтрэх</div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Нэвтрэх нэр</label>
+                    <input type="text" class="form-control" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label>Нууц үг</label>
+                    <input type="password" class="form-control" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Нэвтрэх</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ENGINE LOGIC -->
+    <script>
+        let users = JSON.parse(localStorage.getItem('wc_users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('wc_current_user')) || null;
+
+        // MAINSTREAM & ACTIVE 2026 WORLD CUP EDITION QUIZ POOL
+        const quizDatabase = [
+            {
+                q: "2026 оны Хөлбөмбөгийн Дэлхийн Аварга Шалгаруулах Тэмцээний нээлтийн түүхэн тоглолт аль цэнгэлдэх хүрээлэнд зохион байгуулагдсан бэ?",
+                options: ["СоФи Стадион (Лос-Анжелес)", "Астека Стадион (Мехико)", "Би-Си Плэйс (Ванкувер)", "МетЛайф Стадион (Нью-Йорк)"],
+                correct: 1 // Астека Стадион
+            },
+            {
+                q: "Тэмцээний нээлтийн долоо хоногт Боливийн эсрэг тоглож, 2 гоол (дубль) оруулж гялалзсан АНУ-ын багийн ахлагч хэн бэ?",
+                options: ["Кристиан Пулишич", "Вестон МакКенни", "Тимоти Веа", "Фоларин Балогун"],
+                correct: 0 // Кристиан Пулишич
+            },
+            {
+                q: "2026 оны дэлхийн аваргад түүхэндээ анх удаа нийт хэдэн шигшээ баг үндсэн шатанд шалгарч өрсөлдөж байгаа вэ?",
+                options: ["32 баг", "40 баг", "48 баг", "64 баг"],
+                correct: 2 // 48 баг
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let runningQuizScore = 0;
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active-view'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(viewId).classList.add('active-view');
+            event.currentTarget.classList.add('active');
+            
+            if(viewId === 'predict-view') renderLeaderboard();
+            if(viewId === 'quiz-view') restartQuizEngine();
+        }
+
+        function updateAuthUI() {
+            if (currentUser) {
+                document.getElementById('nav-login-btn').style.display = 'none';
+                document.getElementById('nav-register-btn').style.display = 'none';
+                document.getElementById('nav-logout-btn').style.display = 'block';
+                
+                document.getElementById('header-user-badge').style.display = 'flex';
+                document.getElementById('header-username').innerText = currentUser.username;
+                document.getElementById('header-xp').innerText = `${currentUser.xp} XP`;
+                
+                const alertEl = document.getElementById('predict-alert');
+                if(alertEl) alertEl.style.display = 'none';
+            } else {
+                document.getElementById('nav-login-btn').style.display = 'block';
+                document.getElementById('nav-register-btn').style.display = 'block';
+                document.getElementById('nav-logout-btn').style.display = 'none';
+                document.getElementById('header-user-badge').style.display = 'none';
+                
+                const alertEl = document.getElementById('predict-alert');
+                if(alertEl) alertEl.style.display = 'block';
+            }
+            renderLeaderboard();
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('reg-username').value.trim();
+            const password = document.getElementById('reg-password').value;
+
+            if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+                alert("Уучлаарай, энэ нэр аль хэдийн бүртгэгдсэн байна.");
+                return;
+            }
+
+            const newUser = { username, password, xp: 0, predictions: {} };
+            users.push(newUser);
+            localStorage.setItem('wc_users', JSON.stringify(users));
+            
+            currentUser = newUser;
+            localStorage.setItem('wc_current_user', JSON.stringify(currentUser));
+            
+            closeModal('register-modal');
+            updateAuthUI();
+            alert("Бүртгэл амжилттай үүслээ!");
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+            if (!user) {
+                alert("Нэвтрэх нэр эсвэл нууц үг буруу байна!");
+                return;
+            }
+
+            currentUser = user;
+            localStorage.setItem('wc_current_user', JSON.stringify(currentUser));
+            
+            closeModal('login-modal');
+            updateAuthUI();
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('wc_current_user');
+            updateAuthUI();
+        }
+
+        function submitPrediction(matchId) {
+            if (!currentUser) {
+                alert("Уучлаарай, таамаглал дэвшүүлэхийн тулд эхлээд нэвтрэх шаардлагатай.");
+                return;
+            }
+
+            const home = document.getElementById(`p-home-${matchId}`).value;
+            const away = document.getElementById(`p-away-${matchId}`).value;
+
+            currentUser.predictions[matchId] = { home, away };
+            currentUser.xp += 10;
+            
+            localStorage.setItem('wc_current_user', JSON.stringify(currentUser));
+            users = users.map(u => u.username === currentUser.username ? currentUser : u);
+            localStorage.setItem('wc_users', JSON.stringify(users));
+            
+            updateAuthUI();
+            alert(`Таамаглал амжилттай хадгалагдлаа! (+10 XP)`);
+        }
+
+        function renderLeaderboard() {
+            const container = document.getElementById('leaderboard-target');
+            if (!container) return;
+
+            if (users.length === 0) {
+                container.innerHTML = `<div class="leaderboard-empty">Бүртгэлтэй хэрэглэгч байхгүй байна. Бүртгүүлээд анхных нь болоорой!</div>`;
+                return;
+            }
+
+            const sortedUsers = [...users].sort((a, b) => b.xp - a.xp);
+            
+            let html = '';
+            sortedUsers.forEach((user, index) => {
+                html += `
+                    <div class="leaderboard-item">
+                        <div>
+                            <span class="rank-num" style="margin-right:10px;">#${index + 1}</span>
+                            <span style="font-weight:bold;">${user.username}</span>
+                        </div>
+                        <span style="color:var(--accent-gold); font-weight:bold;">${user.xp} XP</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function restartQuizEngine() {
+            currentQuestionIndex = 0;
+            runningQuizScore = 0;
+            document.getElementById('quiz-playground').style.display = 'block';
+            document.getElementById('quiz-result-screen').style.display = 'none';
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            if (currentQuestionIndex >= quizDatabase.length) {
+                finishQuizEngine();
+                return;
+            }
+
+            const currentData = quizDatabase[currentQuestionIndex];
+            document.getElementById('quiz-progress-text').innerText = `Асуулт ${currentQuestionIndex + 1} / ${quizDatabase.length}`;
+            document.getElementById('quiz-question-text').innerText = currentData.q;
+
+            const optionsContainer = document.getElementById('quiz-options-box');
+            optionsContainer.innerHTML = '';
+
+            currentData.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = option;
+                btn.onclick = () => evaluateQuizAnswer(index);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function evaluateQuizAnswer(selectedIndex) {
+            const currentData = quizDatabase[currentQuestionIndex];
+            if (selectedIndex === currentData.correct) {
+                runningQuizScore++;
+                alert("Зөв хариуллаа!");
+            } else {
+                alert(`Буруу хариуллаа! Зөв хариулт нь: ${currentData.options[currentData.correct]}`);
+            }
+            currentQuestionIndex++;
+            loadQuizQuestion();
+        }
+
+        function finishQuizEngine() {
+            document.getElementById('quiz-playground').style.display = 'none';
+            document.getElementById('quiz-result-screen').style.display = 'block';
+            
+            const totalEarnedXP = runningQuizScore * 50;
+            let message = `Та ${quizDatabase.length} асуултаас ${runningQuizScore}-д нь зөв хариуллаа.`;
+            
+            if (currentUser) {
+                currentUser.xp += totalEarnedXP;
+                localStorage.setItem('wc_current_user', JSON.stringify(currentUser));
+                users = users.map(u => u.username === currentUser.username ? currentUser : u);
+                localStorage.setItem('wc_users', JSON.stringify(users));
+                updateAuthUI();
+                message += ` Таны бүртгэлд +${totalEarnedXP} XP хадгалагдлаа!`;
+            } else {
+                message += " Системд нэвтрээгүй тул XP хадгалагдаагүй.";
+            }
+            document.getElementById('quiz-result-statement').innerText = message;
+        }
+
+        updateAuthUI();
+    </script>
+</body>
+</html>
