@@ -1,0 +1,482 @@
+/* ==========================================================================
+   CORE MODERN PREMIUM SPORTS DESIGN SYSTEM
+   ========================================================================== */
+:root {
+    --bg-deep: #080c14;
+    --bg-card: #121824;
+    --bg-input: #1a2336;
+    --accent-gold: #f59e0b;
+    --accent-neon: #10b981;
+    --accent-crimson: #ef4444;
+    --text-pure: #ffffff;
+    --text-dim: #94a3b8;
+    --border-glow: #1e293b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-pure);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   PREMIUM HEADER NAVIGATION & AUTH ZONE
+   ========================================================================== */
+header {
+    background-color: #020617;
+    border-bottom: 2px solid var(--border-glow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--text-pure);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo span {
+    color: var(--accent-gold);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-pure);
+    background-color: var(--bg-card);
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.auth-zone {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-badge {
+    display: none;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #3b82f6;
+}
+
+.xp-display {
+    color: var(--accent-gold);
+    margin-left: 8px;
+}
+
+/* GLOBAL BUTTONS */
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+.btn:active { transform: scale(0.97); }
+.btn-primary { background-color: var(--accent-gold); color: #000; }
+.btn-secondary { background-color: transparent; color: var(--text-pure); border: 1px solid var(--border-glow); }
+.btn-danger { background-color: var(--accent-crimson); color: white; }
+
+/* ==========================================================================
+   LAYOUT STRUCTURE & ANIMATIONS
+   ========================================================================== */
+.view-section {
+    display: none;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.view-section.active-view { 
+    display: block; 
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--accent-gold);
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   1. SCOREBOARD MODULE
+   ========================================================================== */
+.score-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.match-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 15px;
+}
+
+.match-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.team-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+
+.team-flag {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background-color: var(--bg-input);
+}
+
+.team-name { 
+    font-size: 18px; 
+    font-weight: 700; 
+    text-align: center; 
+}
+
+.score-center { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    font-size: 32px; 
+    font-weight: 900; 
+}
+
+.score-dash { 
+    color: var(--text-dim); 
+}
+
+.match-status { 
+    font-size: 13px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: var(--accent-neon); 
+}
+
+/* ==========================================================================
+   2. NEWS GRID SYSTEM
+   ========================================================================== */
+.news-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 20px; 
+}
+
+.news-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-img { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+    background-color: var(--bg-input); 
+}
+
+.news-content { 
+    padding: 20px; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.news-card h3 { 
+    font-size: 16px; 
+    margin-bottom: 10px; 
+    font-weight: 700; 
+    line-height: 1.4; 
+}
+
+.news-card p { 
+    color: var(--text-dim); 
+    font-size: 13px; 
+    margin-bottom: 15px; 
+}
+
+.news-meta { 
+    font-size: 11px; 
+    color: var(--accent-gold); 
+    font-weight: bold; 
+}
+
+/* ==========================================================================
+   3. PLAYER STATS & TABLES
+   ========================================================================== */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-glow);
+}
+
+.stats-table th, .stats-table td { 
+    padding: 15px 20px; 
+    text-align: left; 
+}
+
+.stats-table th { 
+    background-color: #0b111e; 
+    font-size: 13px; 
+    text-transform: uppercase; 
+    color: var(--text-dim); 
+}
+
+.stats-table tr { 
+    border-bottom: 1px solid var(--border-glow); 
+}
+
+.stats-table tr:last-child { 
+    border-bottom: none; 
+}
+
+.rank-num { 
+    font-weight: 800; 
+    color: var(--accent-gold); 
+}
+
+/* ==========================================================================
+   4. PREDICTIONS & LEADERBOARD MODULE
+   ========================================================================== */
+.prediction-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.predict-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.predict-input-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.predict-input {
+    width: 50px;
+    height: 40px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.leaderboard-list {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 10px 0;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+.leaderboard-item:last-child { 
+    border-bottom: none; 
+}
+
+.leaderboard-empty { 
+    color: var(--text-dim); 
+    text-align: center; 
+    padding: 30px; 
+    font-size: 14px; 
+}
+
+/* ==========================================================================
+   5. INTERACTIVE QUIZ INTERFACE
+   ========================================================================== */
+.quiz-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.option-btn {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-glow);
+    color: var(--text-pure);
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option-btn:hover { 
+    background-color: #24304a; 
+}
+
+.quiz-score-banner { 
+    text-align: center; 
+    padding: 20px; 
+    background-color: #0b111e; 
+    border-radius: 8px; 
+}
+
+/* ==========================================================================
+   6. AUTH CONTROL MODALS
+   ========================================================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 35px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-title { 
+    font-size: 20px; 
+    font-weight: 800; 
+    margin-bottom: 20px; 
+}
+
+.form-group { 
+    margin-bottom: 18px; 
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 12px; 
+    color: var(--text-dim); 
+    margin-bottom: 6px; 
+    font-weight: 600; 
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: none; 
+    border: none; 
+    color: var(--text-dim);
+    font-size: 20px; 
+    cursor: pointer;
+}
